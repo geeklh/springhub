@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.geekli.dao.OrderListMapper" >
+  <resultMap id="BaseResultMap" type="com.geekli.model.OrderList" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="outtradeno" property="outtradeno" jdbcType="VARCHAR" />
+    <result column="totalAmount" property="totalamount" jdbcType="VARCHAR" />
+    <result column="body" property="body" jdbcType="VARCHAR" />
+    <result column="subjecy" property="subjecy" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, outtradeno, totalAmount, body, subjecy
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from orderlist
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from orderlist
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.geekli.model.OrderList" >
+    insert into orderlist (id, outtradeno, totalAmount, 
+      body, subjecy)
+    values (#{id,jdbcType=BIGINT}, #{outtradeno,jdbcType=VARCHAR}, #{totalamount,jdbcType=VARCHAR}, 
+      #{body,jdbcType=VARCHAR}, #{subjecy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.geekli.model.OrderList" >
+    insert into orderlist
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="outtradeno != null" >
+        outtradeno,
+      </if>
+      <if test="totalamount != null" >
+        totalAmount,
+      </if>
+      <if test="body != null" >
+        body,
+      </if>
+      <if test="subjecy != null" >
+        subjecy,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="outtradeno != null" >
+        #{outtradeno,jdbcType=VARCHAR},
+      </if>
+      <if test="totalamount != null" >
+        #{totalamount,jdbcType=VARCHAR},
+      </if>
+      <if test="body != null" >
+        #{body,jdbcType=VARCHAR},
+      </if>
+      <if test="subjecy != null" >
+        #{subjecy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.geekli.model.OrderList" >
+    update orderlist
+    <set >
+      <if test="outtradeno != null" >
+        outtradeno = #{outtradeno,jdbcType=VARCHAR},
+      </if>
+      <if test="totalamount != null" >
+        totalAmount = #{totalamount,jdbcType=VARCHAR},
+      </if>
+      <if test="body != null" >
+        body = #{body,jdbcType=VARCHAR},
+      </if>
+      <if test="subjecy != null" >
+        subjecy = #{subjecy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.geekli.model.OrderList" >
+    update orderlist
+    set outtradeno = #{outtradeno,jdbcType=VARCHAR},
+      totalAmount = #{totalamount,jdbcType=VARCHAR},
+      body = #{body,jdbcType=VARCHAR},
+      subjecy = #{subjecy,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

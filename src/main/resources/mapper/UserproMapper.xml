@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.geekli.dao.UserproMapper" >
+  <resultMap id="BaseResultMap" type="com.geekli.model.Userpro" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="sname" property="sname" jdbcType="VARCHAR" />
+    <result column="classification" property="classification" jdbcType="VARCHAR" />
+    <result column="dayprice" property="dayprice" jdbcType="DECIMAL" />
+    <result column="monthprice" property="monthprice" jdbcType="DECIMAL" />
+    <result column="yearprice" property="yearprice" jdbcType="DECIMAL" />
+    <result column="istry" property="istry" jdbcType="VARCHAR" />
+    <result column="vipdis" property="vipdis" jdbcType="DECIMAL" />
+    <result column="trytime" property="trytime" jdbcType="INTEGER" />
+    <result column="describe" property="describe" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sname, classification, dayprice, monthprice, yearprice, istry, vipdis, trytime, 
+    describe
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from productform
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from productform
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.geekli.model.Userpro" >
+    insert into productform (id, sname, classification, 
+      dayprice, monthprice, yearprice, 
+      istry, vipdis, trytime, 
+      describe)
+    values (#{id,jdbcType=VARCHAR}, #{sname,jdbcType=VARCHAR}, #{classification,jdbcType=VARCHAR}, 
+      #{dayprice,jdbcType=DECIMAL}, #{monthprice,jdbcType=DECIMAL}, #{yearprice,jdbcType=DECIMAL}, 
+      #{istry,jdbcType=VARCHAR}, #{vipdis,jdbcType=DECIMAL}, #{trytime,jdbcType=INTEGER}, 
+      #{describe,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.geekli.model.Userpro" >
+    insert into productform
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sname != null" >
+        sname,
+      </if>
+      <if test="classification != null" >
+        classification,
+      </if>
+      <if test="dayprice != null" >
+        dayprice,
+      </if>
+      <if test="monthprice != null" >
+        monthprice,
+      </if>
+      <if test="yearprice != null" >
+        yearprice,
+      </if>
+      <if test="istry != null" >
+        istry,
+      </if>
+      <if test="vipdis != null" >
+        vipdis,
+      </if>
+      <if test="trytime != null" >
+        trytime,
+      </if>
+      <if test="describe != null" >
+        describe,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="sname != null" >
+        #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="classification != null" >
+        #{classification,jdbcType=VARCHAR},
+      </if>
+      <if test="dayprice != null" >
+        #{dayprice,jdbcType=DECIMAL},
+      </if>
+      <if test="monthprice != null" >
+        #{monthprice,jdbcType=DECIMAL},
+      </if>
+      <if test="yearprice != null" >
+        #{yearprice,jdbcType=DECIMAL},
+      </if>
+      <if test="istry != null" >
+        #{istry,jdbcType=VARCHAR},
+      </if>
+      <if test="vipdis != null" >
+        #{vipdis,jdbcType=DECIMAL},
+      </if>
+      <if test="trytime != null" >
+        #{trytime,jdbcType=INTEGER},
+      </if>
+      <if test="describe != null" >
+        #{describe,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.geekli.model.Userpro" >
+    update productform
+    <set >
+      <if test="sname != null" >
+        sname = #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="classification != null" >
+        classification = #{classification,jdbcType=VARCHAR},
+      </if>
+      <if test="dayprice != null" >
+        dayprice = #{dayprice,jdbcType=DECIMAL},
+      </if>
+      <if test="monthprice != null" >
+        monthprice = #{monthprice,jdbcType=DECIMAL},
+      </if>
+      <if test="yearprice != null" >
+        yearprice = #{yearprice,jdbcType=DECIMAL},
+      </if>
+      <if test="istry != null" >
+        istry = #{istry,jdbcType=VARCHAR},
+      </if>
+      <if test="vipdis != null" >
+        vipdis = #{vipdis,jdbcType=DECIMAL},
+      </if>
+      <if test="trytime != null" >
+        trytime = #{trytime,jdbcType=INTEGER},
+      </if>
+      <if test="describe != null" >
+        describe = #{describe,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.geekli.model.Userpro" >
+    update productform
+    set sname = #{sname,jdbcType=VARCHAR},
+      classification = #{classification,jdbcType=VARCHAR},
+      dayprice = #{dayprice,jdbcType=DECIMAL},
+      monthprice = #{monthprice,jdbcType=DECIMAL},
+      yearprice = #{yearprice,jdbcType=DECIMAL},
+      istry = #{istry,jdbcType=VARCHAR},
+      vipdis = #{vipdis,jdbcType=DECIMAL},
+      trytime = #{trytime,jdbcType=INTEGER},
+      describe = #{describe,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

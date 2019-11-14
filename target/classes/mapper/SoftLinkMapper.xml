@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.geekli.dao.SoftLinkMapper" >
+  <resultMap id="BaseResultMap" type="com.geekli.model.SoftLink" >
+    <result column="editionnum" property="editionnum" jdbcType="DECIMAL" />
+    <result column="softdis" property="softdis" jdbcType="VARCHAR" />
+    <result column="link" property="link" jdbcType="VARCHAR" />
+    <result column="softname" property="softname" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.geekli.model.SoftLink" >
+    insert into softlink (editionnum, softdis, link, 
+      softname)
+    values (#{editionnum,jdbcType=DECIMAL}, #{softdis,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR}, 
+      #{softname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.geekli.model.SoftLink" >
+    insert into softlink
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="editionnum != null" >
+        editionnum,
+      </if>
+      <if test="softdis != null" >
+        softdis,
+      </if>
+      <if test="link != null" >
+        link,
+      </if>
+      <if test="softname != null" >
+        softname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="editionnum != null" >
+        #{editionnum,jdbcType=DECIMAL},
+      </if>
+      <if test="softdis != null" >
+        #{softdis,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null" >
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="softname != null" >
+        #{softname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

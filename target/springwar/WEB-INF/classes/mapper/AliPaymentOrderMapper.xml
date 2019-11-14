@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.geekli.dao.AliPaymentOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.geekli.model.AliPaymentOrder" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="outTradeNo" property="outtradeno" jdbcType="VARCHAR" />
+    <result column="tradeStatus" property="tradestatus" jdbcType="TINYINT" />
+    <result column="TotalAmount" property="totalamount" jdbcType="DOUBLE" />
+    <result column="ReceiptAmount" property="receiptamount" jdbcType="DOUBLE" />
+    <result column="InvoiceAmount" property="invoiceamount" jdbcType="DOUBLE" />
+    <result column="BuyerPayAmount" property="buyerpayamount" jdbcType="DOUBLE" />
+    <result column="RefundFee" property="refundfee" jdbcType="DOUBLE" />
+    <result column="NotifyTime" property="notifytime" jdbcType="TIMESTAMP" />
+    <result column="gmtCreate" property="gmtcreate" jdbcType="TIMESTAMP" />
+    <result column="gmtPayment" property="gmtpayment" jdbcType="TIMESTAMP" />
+    <result column="gmtRefund" property="gmtrefund" jdbcType="TIMESTAMP" />
+    <result column="gmtClose" property="gmtclose" jdbcType="TIMESTAMP" />
+    <result column="tradeNo" property="tradeno" jdbcType="VARCHAR" />
+    <result column="outBizNo" property="outbizno" jdbcType="VARCHAR" />
+    <result column="buyerLogonId" property="buyerlogonid" jdbcType="VARCHAR" />
+    <result column="sellerId" property="sellerid" jdbcType="VARCHAR" />
+    <result column="sellerEmail" property="selleremail" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, outTradeNo, tradeStatus, TotalAmount, ReceiptAmount, InvoiceAmount, BuyerPayAmount, 
+    RefundFee, NotifyTime, gmtCreate, gmtPayment, gmtRefund, gmtClose, tradeNo, outBizNo, 
+    buyerLogonId, sellerId, sellerEmail
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from alipaymentorder
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from alipaymentorder
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.geekli.model.AliPaymentOrder" >
+    insert into alipaymentorder (id, outTradeNo, tradeStatus, 
+      TotalAmount, ReceiptAmount, InvoiceAmount, 
+      BuyerPayAmount, RefundFee, NotifyTime, 
+      gmtCreate, gmtPayment, gmtRefund, 
+      gmtClose, tradeNo, outBizNo, 
+      buyerLogonId, sellerId, sellerEmail
+      )
+    values (#{id,jdbcType=BIGINT}, #{outtradeno,jdbcType=VARCHAR}, #{tradestatus,jdbcType=TINYINT}, 
+      #{totalamount,jdbcType=DOUBLE}, #{receiptamount,jdbcType=DOUBLE}, #{invoiceamount,jdbcType=DOUBLE}, 
+      #{buyerpayamount,jdbcType=DOUBLE}, #{refundfee,jdbcType=DOUBLE}, #{notifytime,jdbcType=TIMESTAMP}, 
+      #{gmtcreate,jdbcType=TIMESTAMP}, #{gmtpayment,jdbcType=TIMESTAMP}, #{gmtrefund,jdbcType=TIMESTAMP}, 
+      #{gmtclose,jdbcType=TIMESTAMP}, #{tradeno,jdbcType=VARCHAR}, #{outbizno,jdbcType=VARCHAR}, 
+      #{buyerlogonid,jdbcType=VARCHAR}, #{sellerid,jdbcType=VARCHAR}, #{selleremail,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.geekli.model.AliPaymentOrder" >
+    insert into alipaymentorder
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="outtradeno != null" >
+        outTradeNo,
+      </if>
+      <if test="tradestatus != null" >
+        tradeStatus,
+      </if>
+      <if test="totalamount != null" >
+        TotalAmount,
+      </if>
+      <if test="receiptamount != null" >
+        ReceiptAmount,
+      </if>
+      <if test="invoiceamount != null" >
+        InvoiceAmount,
+      </if>
+      <if test="buyerpayamount != null" >
+        BuyerPayAmount,
+      </if>
+      <if test="refundfee != null" >
+        RefundFee,
+      </if>
+      <if test="notifytime != null" >
+        NotifyTime,
+      </if>
+      <if test="gmtcreate != null" >
+        gmtCreate,
+      </if>
+      <if test="gmtpayment != null" >
+        gmtPayment,
+      </if>
+      <if test="gmtrefund != null" >
+        gmtRefund,
+      </if>
+      <if test="gmtclose != null" >
+        gmtClose,
+      </if>
+      <if test="tradeno != null" >
+        tradeNo,
+      </if>
+      <if test="outbizno != null" >
+        outBizNo,
+      </if>
+      <if test="buyerlogonid != null" >
+        buyerLogonId,
+      </if>
+      <if test="sellerid != null" >
+        sellerId,
+      </if>
+      <if test="selleremail != null" >
+        sellerEmail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="outtradeno != null" >
+        #{outtradeno,jdbcType=VARCHAR},
+      </if>
+      <if test="tradestatus != null" >
+        #{tradestatus,jdbcType=TINYINT},
+      </if>
+      <if test="totalamount != null" >
+        #{totalamount,jdbcType=DOUBLE},
+      </if>
+      <if test="receiptamount != null" >
+        #{receiptamount,jdbcType=DOUBLE},
+      </if>
+      <if test="invoiceamount != null" >
+        #{invoiceamount,jdbcType=DOUBLE},
+      </if>
+      <if test="buyerpayamount != null" >
+        #{buyerpayamount,jdbcType=DOUBLE},
+      </if>
+      <if test="refundfee != null" >
+        #{refundfee,jdbcType=DOUBLE},
+      </if>
+      <if test="notifytime != null" >
+        #{notifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtcreate != null" >
+        #{gmtcreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtpayment != null" >
+        #{gmtpayment,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtrefund != null" >
+        #{gmtrefund,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtclose != null" >
+        #{gmtclose,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeno != null" >
+        #{tradeno,jdbcType=VARCHAR},
+      </if>
+      <if test="outbizno != null" >
+        #{outbizno,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerlogonid != null" >
+        #{buyerlogonid,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerid != null" >
+        #{sellerid,jdbcType=VARCHAR},
+      </if>
+      <if test="selleremail != null" >
+        #{selleremail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.geekli.model.AliPaymentOrder" >
+    update alipaymentorder
+    <set >
+      <if test="outtradeno != null" >
+        outTradeNo = #{outtradeno,jdbcType=VARCHAR},
+      </if>
+      <if test="tradestatus != null" >
+        tradeStatus = #{tradestatus,jdbcType=TINYINT},
+      </if>
+      <if test="totalamount != null" >
+        TotalAmount = #{totalamount,jdbcType=DOUBLE},
+      </if>
+      <if test="receiptamount != null" >
+        ReceiptAmount = #{receiptamount,jdbcType=DOUBLE},
+      </if>
+      <if test="invoiceamount != null" >
+        InvoiceAmount = #{invoiceamount,jdbcType=DOUBLE},
+      </if>
+      <if test="buyerpayamount != null" >
+        BuyerPayAmount = #{buyerpayamount,jdbcType=DOUBLE},
+      </if>
+      <if test="refundfee != null" >
+        RefundFee = #{refundfee,jdbcType=DOUBLE},
+      </if>
+      <if test="notifytime != null" >
+        NotifyTime = #{notifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtcreate != null" >
+        gmtCreate = #{gmtcreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtpayment != null" >
+        gmtPayment = #{gmtpayment,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtrefund != null" >
+        gmtRefund = #{gmtrefund,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtclose != null" >
+        gmtClose = #{gmtclose,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeno != null" >
+        tradeNo = #{tradeno,jdbcType=VARCHAR},
+      </if>
+      <if test="outbizno != null" >
+        outBizNo = #{outbizno,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerlogonid != null" >
+        buyerLogonId = #{buyerlogonid,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerid != null" >
+        sellerId = #{sellerid,jdbcType=VARCHAR},
+      </if>
+      <if test="selleremail != null" >
+        sellerEmail = #{selleremail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.geekli.model.AliPaymentOrder" >
+    update alipaymentorder
+    set outTradeNo = #{outtradeno,jdbcType=VARCHAR},
+      tradeStatus = #{tradestatus,jdbcType=TINYINT},
+      TotalAmount = #{totalamount,jdbcType=DOUBLE},
+      ReceiptAmount = #{receiptamount,jdbcType=DOUBLE},
+      InvoiceAmount = #{invoiceamount,jdbcType=DOUBLE},
+      BuyerPayAmount = #{buyerpayamount,jdbcType=DOUBLE},
+      RefundFee = #{refundfee,jdbcType=DOUBLE},
+      NotifyTime = #{notifytime,jdbcType=TIMESTAMP},
+      gmtCreate = #{gmtcreate,jdbcType=TIMESTAMP},
+      gmtPayment = #{gmtpayment,jdbcType=TIMESTAMP},
+      gmtRefund = #{gmtrefund,jdbcType=TIMESTAMP},
+      gmtClose = #{gmtclose,jdbcType=TIMESTAMP},
+      tradeNo = #{tradeno,jdbcType=VARCHAR},
+      outBizNo = #{outbizno,jdbcType=VARCHAR},
+      buyerLogonId = #{buyerlogonid,jdbcType=VARCHAR},
+      sellerId = #{sellerid,jdbcType=VARCHAR},
+      sellerEmail = #{selleremail,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

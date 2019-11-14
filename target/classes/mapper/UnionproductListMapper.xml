@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.geekli.dao.UnionproductListMapper" >
+  <resultMap id="BaseResultMap" type="com.geekli.model.UnionproductList" >
+    <id column="productId" property="productid" jdbcType="VARCHAR" />
+    <result column="subject" property="subject" jdbcType="VARCHAR" />
+    <result column="body" property="body" jdbcType="VARCHAR" />
+    <result column="totalFee" property="totalfee" jdbcType="VARCHAR" />
+    <result column="outtradeno" property="outtradeno" jdbcType="VARCHAR" />
+    <result column="spillcreateIp" property="spillcreateip" jdbcType="VARCHAR" />
+    <result column="attach" property="attach" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    productId, subject, body, totalFee, outtradeno, spillcreateIp, attach
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from unionproductlist
+    where productId = #{productid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from unionproductlist
+    where productId = #{productid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.geekli.model.UnionproductList" >
+    insert into unionproductlist (productId, subject, body, 
+      totalFee, outtradeno, spillcreateIp, 
+      attach)
+    values (#{productid,jdbcType=VARCHAR}, #{subject,jdbcType=VARCHAR}, #{body,jdbcType=VARCHAR}, 
+      #{totalfee,jdbcType=VARCHAR}, #{outtradeno,jdbcType=VARCHAR}, #{spillcreateip,jdbcType=VARCHAR}, 
+      #{attach,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.geekli.model.UnionproductList" >
+    insert into unionproductlist
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productid != null" >
+        productId,
+      </if>
+      <if test="subject != null" >
+        subject,
+      </if>
+      <if test="body != null" >
+        body,
+      </if>
+      <if test="totalfee != null" >
+        totalFee,
+      </if>
+      <if test="outtradeno != null" >
+        outtradeno,
+      </if>
+      <if test="spillcreateip != null" >
+        spillcreateIp,
+      </if>
+      <if test="attach != null" >
+        attach,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productid != null" >
+        #{productid,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null" >
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="body != null" >
+        #{body,jdbcType=VARCHAR},
+      </if>
+      <if test="totalfee != null" >
+        #{totalfee,jdbcType=VARCHAR},
+      </if>
+      <if test="outtradeno != null" >
+        #{outtradeno,jdbcType=VARCHAR},
+      </if>
+      <if test="spillcreateip != null" >
+        #{spillcreateip,jdbcType=VARCHAR},
+      </if>
+      <if test="attach != null" >
+        #{attach,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.geekli.model.UnionproductList" >
+    update unionproductlist
+    <set >
+      <if test="subject != null" >
+        subject = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="body != null" >
+        body = #{body,jdbcType=VARCHAR},
+      </if>
+      <if test="totalfee != null" >
+        totalFee = #{totalfee,jdbcType=VARCHAR},
+      </if>
+      <if test="outtradeno != null" >
+        outtradeno = #{outtradeno,jdbcType=VARCHAR},
+      </if>
+      <if test="spillcreateip != null" >
+        spillcreateIp = #{spillcreateip,jdbcType=VARCHAR},
+      </if>
+      <if test="attach != null" >
+        attach = #{attach,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where productId = #{productid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.geekli.model.UnionproductList" >
+    update unionproductlist
+    set subject = #{subject,jdbcType=VARCHAR},
+      body = #{body,jdbcType=VARCHAR},
+      totalFee = #{totalfee,jdbcType=VARCHAR},
+      outtradeno = #{outtradeno,jdbcType=VARCHAR},
+      spillcreateIp = #{spillcreateip,jdbcType=VARCHAR},
+      attach = #{attach,jdbcType=VARCHAR}
+    where productId = #{productid,jdbcType=VARCHAR}
+  </update>
+</mapper>
